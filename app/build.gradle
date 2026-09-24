@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.ruet.cse.smartclassroom'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.ruet.cse.smartclassroom"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding false
+    }
+}
+
+dependencies {
+
+    // AndroidX
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.fragment:fragment:1.6.2'
+    implementation 'androidx.work:work-runtime:2.9.0'
+
+    // Material Design
+    implementation 'com.google.android.material:material:1.11.0'
+
+    // Firebase Bill of Materials
+    implementation platform('com.google.firebase:firebase-bom:34.17.0')
+
+    // Firebase Analytics
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Firebase In-App Messaging
+    implementation 'com.google.firebase:firebase-inappmessaging-display'
+
+    // Firebase Authentication
+    implementation 'com.google.firebase:firebase-auth'
+
+    // Firebase Firestore
+    implementation 'com.google.firebase:firebase-firestore'
+
+    // Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging'
+
+    // Unit testing
+    testImplementation 'junit:junit:4.13.2'
+
+    // Android testing
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
