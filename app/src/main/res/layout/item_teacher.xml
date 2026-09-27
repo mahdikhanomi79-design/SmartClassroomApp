@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_marginBottom="10dp"
+
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TEACHER NAME -->
+
+        <TextView
+            android:id="@+id/tvTeacherName"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Prof. Dr. Boshir Ahmed"
+
+            android:textStyle="bold"
+            android:textSize="17sp"
+
+            android:textColor="@color/text_primary"/>
+
+        <!-- TEACHER CODE -->
+
+        <TextView
+            android:id="@+id/tvTeacherCode"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="3dp"
+
+            android:text="Code: BA"
+
+            android:textSize="13sp"
+
+            android:textColor="@color/text_secondary"/>
+
+        <!-- STATUS -->
+
+        <TextView
+            android:id="@+id/tvTeacherStatus"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="6dp"
+
+            android:text="Currently Free"
+
+            android:textColor="@color/status_free"
+
+            android:textStyle="bold" />
+
+        <!-- DETAILS -->
+
+        <TextView
+            android:id="@+id/tvTeacherDetail"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="4dp"
+
+            android:text="Next class: Digital Logic Design at 8:40 AM, Room 104"
+
+            android:textSize="13sp"
+
+            android:textColor="@color/text_secondary"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
