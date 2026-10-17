@@ -44,11 +44,11 @@ The system integrates with **Firebase Cloud Firestore** as its primary data stor
 
 This release implements the following three features as defined in the project proposal:
 
-| Feature | Description |
-|---|---|
-| **Smart Class Reminder** | Proactive local notifications scheduled 10 minutes before each class, with an additional night-before alert |
-| **Empty Classroom Finder** | Real-time display of classroom availability derived from the active routine schedule |
-| **Faculty Availability Locator** | Live teacher status board indicating current teaching location and next available slot |
+| Feature                          | Description                                                                                                 |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Smart Class Reminder**         | Proactive local notifications scheduled 10 minutes before each class, with an additional night-before alert |
+| **Empty Classroom Finder**       | Real-time display of classroom availability derived from the active routine schedule                        |
+| **Faculty Availability Locator** | Live teacher status board indicating current teaching location and next available slot                      |
 
 > **Note:** IoT-based physical occupancy detection (Proposal Feature 4) is explicitly excluded from this release and is designated for future development.
 
@@ -98,35 +98,35 @@ The reminder system operates by scheduling `WorkManager` jobs calibrated to each
 
 ### Runtime & Framework
 
-| Component | Technology | Version |
-|---|---|---|
-| Language | Java | 17 |
-| UI Framework | Android Views — Material Design 3 | Material 1.11.0 |
-| Navigation | `BottomNavigationView` + `FragmentManager` | AndroidX Fragment 1.6.2 |
-| Background Tasks | Android WorkManager | 2.9.0 |
-| List Rendering | RecyclerView | 1.3.2 |
+| Component        | Technology                                 | Version                 |
+| ---------------- | ------------------------------------------ | ----------------------- |
+| Language         | Java                                       | 17                      |
+| UI Framework     | Android Views — Material Design 3          | Material 1.11.0         |
+| Navigation       | `BottomNavigationView` + `FragmentManager` | AndroidX Fragment 1.6.2 |
+| Background Tasks | Android WorkManager                        | 2.9.0                   |
+| List Rendering   | RecyclerView                               | 1.3.2                   |
 
 ### Firebase Services
 
-| Service | Purpose |
-|---|---|
-| Firebase Authentication | User identity — email/password sign-in and registration |
-| Cloud Firestore | Primary data store — routines, classrooms, teachers, users |
-| Firebase Cloud Messaging (FCM) | Server-push notification channel for admin broadcasts |
-| Firebase Analytics | Usage telemetry |
-| Firebase In-App Messaging | In-app notification display support |
+| Service                        | Purpose                                                    |
+| ------------------------------ | ---------------------------------------------------------- |
+| Firebase Authentication        | User identity — email/password sign-in and registration    |
+| Cloud Firestore                | Primary data store — routines, classrooms, teachers, users |
+| Firebase Cloud Messaging (FCM) | Server-push notification channel for admin broadcasts      |
+| Firebase Analytics             | Usage telemetry                                            |
+| Firebase In-App Messaging      | In-app notification display support                        |
 
 ### Build Configuration
 
-| Parameter | Value |
-|---|---|
-| Firebase BOM | 34.17.0 |
-| Compile SDK | 34 |
-| Target SDK | 34 |
-| Minimum SDK | 24 (Android 7.0 Nougat) |
+| Parameter      | Value                         |
+| -------------- | ----------------------------- |
+| Firebase BOM   | 34.17.0                       |
+| Compile SDK    | 34                            |
+| Target SDK     | 34                            |
+| Minimum SDK    | 24 (Android 7.0 Nougat)       |
 | Application ID | `com.ruet.cse.smartclassroom` |
-| `versionCode` | 1 |
-| `versionName` | 1.0 |
+| `versionCode`  | 1                             |
+| `versionName`  | 1.0                           |
 
 ---
 
@@ -265,12 +265,12 @@ SmartClassroomApp/
 
 ### Prerequisites
 
-| Requirement | Specification |
-|---|---|
-| IDE | Android Studio Hedgehog (2023.1.1) or later |
-| JDK | Java 17 (bundled with Android Studio) |
-| Device / Emulator | Android API 24 or higher |
-| Firebase Project | Required — see [Section 7](#7-firebase-configuration) |
+| Requirement       | Specification                                         |
+| ----------------- | ----------------------------------------------------- |
+| IDE               | Android Studio Hedgehog (2023.1.1) or later           |
+| JDK               | Java 17 (bundled with Android Studio)                 |
+| Device / Emulator | Android API 24 or higher                              |
+| Firebase Project  | Required — see [Section 7](#7-firebase-configuration) |
 
 ### Step 1 — Clone the Repository
 
@@ -315,11 +315,11 @@ Connect a physical device or launch an emulator, then execute **Run → Run 'app
 
 ### 7.3 Enable Required Services
 
-| Service | Console Navigation | Required Configuration |
-|---|---|---|
-| **Authentication** | Build → Authentication → Sign-in method | Enable **Email/Password** provider |
+| Service             | Console Navigation                           | Required Configuration                           |
+| ------------------- | -------------------------------------------- | ------------------------------------------------ |
+| **Authentication**  | Build → Authentication → Sign-in method      | Enable **Email/Password** provider               |
 | **Cloud Firestore** | Build → Firestore Database → Create database | Select **Start in test mode** during development |
-| **Cloud Messaging** | Build → Cloud Messaging | Enabled automatically upon app registration |
+| **Cloud Messaging** | Build → Cloud Messaging                      | Enabled automatically upon app registration      |
 
 ---
 
@@ -381,21 +381,21 @@ routines/{autoId}
 
 #### Data Constraints
 
-| Field | Constraint |
-|---|---|
-| `dayOfWeek` | Must be **all uppercase**. `"SATURDAY"` is valid; `"Saturday"` is not. |
+| Field                   | Constraint                                                                                         |
+| ----------------------- | -------------------------------------------------------------------------------------------------- |
+| `dayOfWeek`             | Must be **all uppercase**. `"SATURDAY"` is valid; `"Saturday"` is not.                             |
 | `startTime` / `endTime` | Must be zero-padded 24-hour `"HH:mm"`. `"08:40"` is valid; `"8:40"` may cause comparison failures. |
-| `teacherId` | Must exactly match a document ID in the `teachers` collection. |
-| `room` | Must match a `roomNumber` value in the `classrooms` collection. |
+| `teacherId`             | Must exactly match a document ID in the `teachers` collection.                                     |
+| `room`                  | Must match a `roomNumber` value in the `classrooms` collection.                                    |
 
 #### Required Composite Indexes
 
 Firestore will prompt index creation on first query execution. The following composite indexes are required:
 
-| Collection | Fields |
-|---|---|
+| Collection | Fields                                         |
+| ---------- | ---------------------------------------------- |
 | `routines` | `semester` ASC, `section` ASC, `dayOfWeek` ASC |
-| `routines` | `dayOfWeek` ASC |
+| `routines` | `dayOfWeek` ASC                                |
 
 ---
 
@@ -429,9 +429,9 @@ scheduleTodayAndTomorrowReminders(context)
 
 ### 9.3 Notification Types
 
-| Notification | Trigger Condition | Payload |
-|---|---|---|
-| **Pre-class Alert** | 10 minutes before each scheduled class period | Course name, teacher, room, start time |
+| Notification           | Trigger Condition                                          | Payload                                |
+| ---------------------- | ---------------------------------------------------------- | -------------------------------------- |
+| **Pre-class Alert**    | 10 minutes before each scheduled class period              | Course name, teacher, room, start time |
 | **Night-Before Alert** | Tonight at 22:00, for the first class of the following day | Course name, teacher, room, start time |
 
 ### 9.4 Boot Persistence
@@ -474,24 +474,24 @@ python scripts/seed_firestore_new_routine.py path/to/serviceAccountKey.json
 
 ### Repository Information
 
-| Property | Value |
-|---|---|
-| Repository | [github.com/mahdikhanomi79-design/SmartClassroomApp](https://github.com/mahdikhanomi79-design/SmartClassroomApp) |
-| Default Branch | `main` |
-| Branching Strategy | Single-branch (all contributions target `main` directly) |
-| Commit Convention | [Conventional Commits](https://www.conventionalcommits.org/) |
+| Property           | Value                                                                                                            |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Repository         | [github.com/mahdikhanomi79-design/SmartClassroomApp](https://github.com/mahdikhanomi79-design/SmartClassroomApp) |
+| Default Branch     | `main`                                                                                                           |
+| Branching Strategy | Single-branch (all contributions target `main` directly)                                                         |
+| Commit Convention  | [Conventional Commits](https://www.conventionalcommits.org/)                                                     |
 
 ### Push Segments
 
 The commit history is structured into five discrete segments, each representing a logical unit of work. Segments must be applied in order.
 
-| Segment | Scope | Assigned To |
-|---|---|---|
-| **Push 1** | Project scaffold — build configuration, data models, utility classes, core activities | Team Member 1 |
-| **Push 2** | Authentication flows (login, registration) and user profile management | Team Member 1 / 2 |
-| **Push 3** | Feature screens — Routine, Classroom Finder, Faculty Locator | Team Member 2 |
-| **Push 4** | Notification system — WorkManager scheduling, FCM, boot persistence | Team Member 3 |
-| **Push 5** | Tooling — Firestore seed script, Firebase configuration template, documentation | Team Member 1 |
+| Scope                                                                                 | Assigned To       |
+| ------------------------------------------------------------------------------------- | ----------------- |
+| Project scaffold — build configuration, data models, utility classes, core activities | Mahdi Khan Omi    |
+| Authentication flows (login, registration) and user profile management                | Ovijit Debnath    |
+| Feature screens — Routine, Classroom Finder, Faculty Locator                          | Syeda Estika Emam |
+| Notification system — WorkManager scheduling, FCM, boot persistence                   | Mahdi Khan Omi    |
+| Tooling — Documentation                                                               | Mahdi Khan Omi    |
 
 ### Cloning and Local Setup (for Team Members)
 
@@ -517,19 +517,20 @@ cp app/google-services.json.template app/google-services.json
 
 **Permitted types:**
 
-| Type | Usage |
-|---|---|
-| `feat` | A new feature or user-visible capability |
-| `fix` | A defect correction |
-| `chore` | Build, dependency, or tooling changes with no production code impact |
-| `refactor` | Code restructuring with no behaviour change |
-| `docs` | Documentation-only changes |
-| `style` | Formatting changes with no logic impact |
-| `test` | Addition or modification of tests |
+| Type       | Usage                                                                |
+| ---------- | -------------------------------------------------------------------- |
+| `feat`     | A new feature or user-visible capability                             |
+| `fix`      | A defect correction                                                  |
+| `chore`    | Build, dependency, or tooling changes with no production code impact |
+| `refactor` | Code restructuring with no behaviour change                          |
+| `docs`     | Documentation-only changes                                           |
+| `style`    | Formatting changes with no logic impact                              |
+| `test`     | Addition or modification of tests                                    |
 
 **Permitted scopes:** `auth`, `ui`, `notifications`, `model`, `utils`, `firebase`, `build`, `scripts`
 
 **Examples:**
+
 ```
 feat(auth): enforce minimum password length of 6 characters on registration
 fix(notifications): cancel existing WorkManager jobs before re-enqueuing on launch
@@ -543,37 +544,37 @@ docs: add composite index requirements to Firestore schema documentation
 
 ### Completed — Release 1.0
 
-| Item | Status |
-|---|---|
-| Firebase email/password authentication | Complete |
-| Automatic Firestore user document creation on registration | Complete |
-| Smart Class Reminder — 10-minute pre-class local notification | Complete |
-| Smart Class Reminder — night-before 22:00 alert | Complete |
-| Boot-persistent reminder rescheduling via `BootReceiver` | Complete |
-| Empty Classroom Finder — real-time Firestore availability | Complete |
-| Faculty Availability Locator — live status and search | Complete |
+| Item                                                                     | Status   |
+| ------------------------------------------------------------------------ | -------- |
+| Firebase email/password authentication                                   | Complete |
+| Automatic Firestore user document creation on registration               | Complete |
+| Smart Class Reminder — 10-minute pre-class local notification            | Complete |
+| Smart Class Reminder — night-before 22:00 alert                          | Complete |
+| Boot-persistent reminder rescheduling via `BootReceiver`                 | Complete |
+| Empty Classroom Finder — real-time Firestore availability                | Complete |
+| Faculty Availability Locator — live status and search                    | Complete |
 | User profile — semester and section selection with Firestore persistence | Complete |
-| FCM infrastructure for server-push notification support | Complete |
+| FCM infrastructure for server-push notification support                  | Complete |
 
 ### Known Defects
 
-| Defect | Description | Affected Components |
-|---|---|---|
+| Defect                                          | Description                                                                                                                                                                                                                                                                                                                                                                  | Affected Components                                          |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | Missing `section` field in `ClassSchedule` POJO | `RoutineFragment` and `ReminderScheduler` both issue Firestore queries filtered by `section`, but `ClassSchedule.java` does not declare a `section` field. Firestore `.toObject()` silently drops unmapped fields, causing queries to return unfiltered results. **Resolution:** add `private String section;` with corresponding getter and setter to `ClassSchedule.java`. | `ClassSchedule.java`, `RoutineFragment`, `ReminderScheduler` |
-| Firestore security rules in test mode | Database is currently configured in open test mode. All read/write operations are permitted without authentication checks. | Entire Firestore database |
+| Firestore security rules in test mode           | Database is currently configured in open test mode. All read/write operations are permitted without authentication checks.                                                                                                                                                                                                                                                   | Entire Firestore database                                    |
 
 ### Planned — Release 2.0
 
-| Item | Priority |
-|---|---|
-| Firestore security rules — role-based read/write enforcement | High |
-| Admin module — in-app routine management UI to replace direct Firestore Console access | High |
-| Resolution of `ClassSchedule.section` POJO defect | High |
-| Offline data persistence via Firestore local cache | Medium |
-| System-aware dark mode theme | Medium |
-| Illustrated empty states and retry affordances across all fragments | Medium |
-| Multi-department support (extend beyond CSE) | Low |
-| IoT-based physical room occupancy detection (Proposal Feature 4) | Low |
+| Item                                                                                   | Priority |
+| -------------------------------------------------------------------------------------- | -------- |
+| Firestore security rules — role-based read/write enforcement                           | High     |
+| Admin module — in-app routine management UI to replace direct Firestore Console access | High     |
+| Resolution of `ClassSchedule.section` POJO defect                                      | High     |
+| Offline data persistence via Firestore local cache                                     | Medium   |
+| System-aware dark mode theme                                                           | Medium   |
+| Illustrated empty states and retry affordances across all fragments                    | Medium   |
+| Multi-department support (extend beyond CSE)                                           | Low      |
+| IoT-based physical room occupancy detection (Proposal Feature 4)                       | Low      |
 
 ---
 
@@ -581,10 +582,10 @@ docs: add composite index requirements to Firestore schema documentation
 
 The application declares the following permissions in `AndroidManifest.xml`:
 
-| Permission | Rationale |
-|---|---|
-| `android.permission.INTERNET` | Required for all Firebase network operations — authentication, Firestore queries, FCM token registration |
-| `android.permission.POST_NOTIFICATIONS` | Required on Android 13 (API 33) and above to display local class reminder notifications |
+| Permission                                  | Rationale                                                                                                            |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `android.permission.INTERNET`               | Required for all Firebase network operations — authentication, Firestore queries, FCM token registration             |
+| `android.permission.POST_NOTIFICATIONS`     | Required on Android 13 (API 33) and above to display local class reminder notifications                              |
 | `android.permission.RECEIVE_BOOT_COMPLETED` | Required to receive the system `BOOT_COMPLETED` broadcast and restore scheduled reminders following a device restart |
 
 ---
